@@ -1,0 +1,220 @@
+:root {
+  --bgColor: #f5f5f5;
+  --primaryColor: #000000;
+  --primaryColorLight: #fbf0eb;
+  --formColor: #D3D3D3;
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --greyText: hsl(0, 0%, 51%);
+  --inputColor: hsl(330, 12%, 97%);
+  --cardColor: hsl(300, 3%, 94%);
+
+  /* Font et Typography */
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: 0.938rem;
+  --smallFontSize: 0.813rem;
+  --smallestFontSize: 0.75rem;
+  --borderRadius: 5px;
+}
+
+.detailsPage {
+  padding: 6rem 1.5rem 2rem;
+  .imageDiv {
+    height: 100%;
+    max-height: 200px;
+    background: #000;
+    border-radius: var(--borderRadius);
+    overflow: hidden;
+    position: relative;
+
+    .imgText {
+      position: absolute;
+      background: #0000006f;
+      z-index: 4;
+      height: 100%;
+      width: 100%;
+      color: var(--whiteColor);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      h3 {
+        color: var(--whiteColor);
+        font-size: var(--h1FontSize);
+      }
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .detailsInfo {
+    .title {
+      display: block;
+      padding: 1rem 0;
+      color: var(--primaryColor);
+      font-size: var(--h2FontSize);
+      font-weight: 600;
+    }
+
+    p {
+      color: var(--blackColor);
+      font-size: var(--normalFontSize);
+      line-height: var(--h1FontSize);
+    }
+
+    .specs {
+      padding: 1rem 0;
+      gap: 0.5rem;
+
+      span {
+        gap: 0.8rem;
+        color: var(--blackColor);
+
+        .icon {
+          font-size: var(--h1FontSize);
+        }
+
+        small {
+          font-size: var(--h2FontSize);
+        }
+      }
+    }
+
+    .actionButtons {
+      gap: 1rem;
+      margin-top: 1rem;
+      .price {
+        padding: 0.7rem;
+        border-radius: var(--borderRadius);
+        border: 1.5px dashed var(--primaryColor);
+        color: var(--primaryColor);
+        font-size: var(--h2FontSize);
+        font-weight: 600;
+      }
+
+      .btn {
+        font-size: var(--h3FontSize);
+        padding: 0.9rem 1.2rem;
+      }
+    }
+
+    .salForm {
+      margin-top: 5rem;
+      p {
+        padding-bottom: 2rem;
+      }
+
+      .gridContainer {
+        .inputDiv {
+          input {
+            outline: none;
+            border: none;
+            width: 200px;
+            padding: 0.8rem;
+            background: var(--cardColor);
+            border-radius: var(--borderRadius);
+            color: var(--blackColor);
+            align-items: center;
+            margin: auto;
+            justify-content: center;
+            font-size: var(--normalFontSize);
+            width: 100%;
+            gap: 0.5rem;
+            transition: 0.3s ease;
+
+            &::placeholder {
+              font-size: var(--smallFontSize);
+              opacity: .5;
+            }
+          }
+
+          textarea {
+            height: 100px;
+            width: 100%;
+            background: var(--cardColor);
+            outline: none;
+            border: none;
+            padding: 0.8rem;
+            border-radius: var(--borderRadius);
+          }
+
+          label {
+            color: var(--blackColor);
+            font-weight: 400;
+            font-size: var(--normalFontSize);
+            padding: 0.5rem 0;
+            display: block;
+          }
+        }
+
+        .btn{
+          transform: translateY(3rem);
+        }
+      }
+    }
+  }
+}
+
+// MEDIA QUERIES
+@media screen and (min-width: 520px) {
+  .detailsPage {
+    padding: 7rem 1.5rem 2rem;
+    .imageDiv {
+      max-height: 250px;
+
+      .imgText {
+        h3 {
+          font-size: var(--biggestFontSize);
+        }
+      }
+    }
+
+    .detailsInfo {
+      .title {
+        font-size: var(--h1FontSize);
+      }
+      p {
+        font-size: var(--h3FontSize);
+      }
+
+      .specs {
+        span {
+          .icon {
+            font-size: var(--h1FontSize);
+          }
+
+          small {
+            font-size: var(--h3FontSize);
+          }
+        }
+      }
+
+      .actionButtons {
+        .price {
+          font-size: var(--h1FontSize);
+        }
+        .btn {
+          font-size: var(--h2FontSize);
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: 640px) {
+  .detailsPage {
+    .gridContainer{
+      grid-template-columns: repeat(2,1fr);
+    }
+  }
+}

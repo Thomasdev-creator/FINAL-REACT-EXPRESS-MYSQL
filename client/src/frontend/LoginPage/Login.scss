@@ -1,0 +1,99 @@
+:root{
+    --bgColor: #f5f5f5;
+    --primaryColor: #000000;
+    --primaryColorLight: #fbf0eb;
+    --formColor: #D3D3D3;
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(0, 0%, 18%);
+    --greyText: hsl(0, 0%, 75%);
+    --inputColor: hsl(330, 12%, 97%);
+
+    /* Font et Typography */
+    --biggestFontSize: 2.5rem; 
+    --h1FontSize: 1.5rem; 
+    --h2FontSize: 1.25rem; 
+    --h3FontSize: 1rem; 
+    --normalFontSize: .938rem; 
+    --smallFontSize: .813rem; 
+    --smallestFontSize: .75rem;
+    --borderRadius: 5px; 
+}
+
+.formContainer{
+    position: relative;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+
+    .formCard{
+        width: max-content;
+        height: max-content;
+        background: var(--formColor);
+        margin: auto;
+        padding: 1rem 1.5rem;
+        border-radius: var(--borderRadius);
+
+        h3{
+            font-size: var(--h1FontSize);
+            color: var(--blackColor);
+           text-align: center;
+            padding-top: 1rem;
+        }
+
+        span{
+            display: block;
+            padding-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .inputDiv{
+            input{
+                outline: none;
+                border: none;
+                width: 200px;
+                padding: .8rem;
+                background: var(--primaryColorLight);
+                border-radius: var(--borderRadius);
+                color: var(--blackColor);
+                align-items: center;
+                margin: auto;
+                justify-content: center;
+                font-size: var(--normalFontSize);
+                width: 100%;
+                gap: .5rem;
+                transition: .3s ease;
+
+                &::placeholder{
+                    font-size: var(--smallFontSize);
+                }
+            }
+
+            label{
+                color:var(--blackColor);
+                font-weight: 400;
+                font-size: var(--normalFontSize);
+                padding: .5rem 0;
+                display: block;
+            }
+
+            
+        }
+
+        .btn{
+            margin: 1rem 0;
+            width: 100%;
+            border-radius: var(--borderRadius);
+            color: var(--whiteColor);
+            font-weight: 500;
+            font-size:  var(--normalFontSize);
+            &:hover{
+                color: var(--primaryColor);
+            }
+        }
+
+        .signUpBtn{
+            opacity: .6;
+        }
+    }
+ 
+}

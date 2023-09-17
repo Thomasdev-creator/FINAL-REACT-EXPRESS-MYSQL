@@ -1,0 +1,90 @@
+:root {
+  --bgColor: #f5f5f5;
+  --primaryColor: #000000;
+  --primaryColorLight: #fbf0eb;
+  --formColor: #D3D3D3;
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --greyText: hsl(0, 0%, 75%);
+  --inputColor: hsl(330, 12%, 97%);
+  /* Font et Typography */
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+  --borderRadius: 5px;
+}
+
+.formContainer {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+.formContainer .formCard {
+  width: -moz-max-content;
+  width: max-content;
+  height: -moz-max-content;
+  height: max-content;
+  background: var(--formColor);
+  margin: auto;
+  padding: 1rem 1.5rem;
+  border-radius: var(--borderRadius);
+}
+.formContainer .formCard h3 {
+  font-size: var(--h1FontSize);
+  color: var(--blackColor);
+  text-align: center;
+  padding-top: 1rem;
+}
+.formContainer .formCard span {
+  display: block;
+  padding-bottom: 1.5rem;
+  text-align: center;
+}
+.formContainer .formCard .inputDiv input {
+  outline: none;
+  border: none;
+  width: 200px;
+  padding: 0.8rem;
+  background: var(--primaryColorLight);
+  border-radius: var(--borderRadius);
+  color: var(--blackColor);
+  align-items: center;
+  margin: auto;
+  justify-content: center;
+  font-size: var(--normalFontSize);
+  width: 100%;
+  gap: 0.5rem;
+  transition: 0.3s ease;
+}
+.formContainer .formCard .inputDiv input::-moz-placeholder {
+  font-size: var(--smallFontSize);
+}
+.formContainer .formCard .inputDiv input::placeholder {
+  font-size: var(--smallFontSize);
+}
+.formContainer .formCard .inputDiv label {
+  color: var(--blackColor);
+  font-weight: 400;
+  font-size: var(--normalFontSize);
+  padding: 0.5rem 0;
+  display: block;
+}
+.formContainer .formCard .btn {
+  margin: 1rem 0;
+  width: 100%;
+  border-radius: var(--borderRadius);
+  color: var(--whiteColor);
+  font-weight: 500;
+  font-size: var(--normalFontSize);
+}
+.formContainer .formCard .btn:hover {
+  color: var(--primaryColor);
+}
+.formContainer .formCard .signUpBtn {
+  opacity: 0.6;
+}/*# sourceMappingURL=Login.css.map */

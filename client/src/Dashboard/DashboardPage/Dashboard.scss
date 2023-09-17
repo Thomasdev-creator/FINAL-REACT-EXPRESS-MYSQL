@@ -1,0 +1,493 @@
+:root {
+  --bgColor: #f5f5f5;
+  --primaryColor: #000000;
+  --primaryMediumColor: #d6b2a0;
+  --primaryColorLight: #fbf0eb;
+  --formColor: #D3D3D3;
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --greyText: hsl(0, 0%, 75%);
+  --inputColor: hsl(330, 12%, 97%);
+
+  /* Font et Typography */
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: 0.938rem;
+  --smallFontSize: 0.813rem;
+  --smallestFontSize: 0.75rem;
+  --borderRadius: 5px;
+}
+
+
+.OutletCSS {
+  width: 100%;
+  background: var(--bgColor);
+  height: 100vh;
+  padding: 2rem;
+  gap: 2rem;
+
+  .pageBody {
+    flex-basis: 80%;
+    background: var(--formColor);
+    height: 100%;
+    border-radius: var(--borderRadius);
+    padding: 2rem;
+    overflow-y: auto;
+
+    .sectionTitle {
+      width: 100%;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      h1 {
+        font-size: 1.9rem;
+        color: var(--blackColor);
+      }
+      p {
+        font-size: var(--h3FontSize);
+      }
+    }
+
+    .topSection {
+      .video_Summary {
+        display: flex;
+        align-items: flex-start;
+        margin-top: 1rem;
+
+        gap: 1.5rem;
+        .flexLeft {
+          width: 65%;
+
+          position: relative;
+          border-radius: var(--borderRadius);
+
+          .videoDiv {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: var(--borderRadius);
+
+            video {
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+          .videoText {
+            width: 80%;
+            z-index: 1;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            h4 {
+              font-size: 2rem;
+              padding: 4rem 2rem 1.5rem;
+            }
+
+            .btns {
+              padding: 0 2rem;
+              gap: 1rem;
+
+              .link {
+                padding: 1rem;
+                border-radius: var(--borderRadius);
+                border: 2px solid var(--primaryColorLight);
+                color: var(--whiteColor);
+                &:hover {
+                  color: var(--primaryColor);
+                  background: var(--primaryColorLight);
+                }
+              }
+
+              .bg {
+                background: var(--primaryColorLight);
+                color: var(--primaryColor);
+                &:hover {
+                  color: var(--whiteColor);
+                  background: none;
+                }
+              }
+            }
+          }
+        }
+
+        .flexRight {
+          height: 100%;
+          width: 35%;
+          background: var(--primaryColor);
+          padding: 1rem;
+          border-radius: var(--borderRadius);
+          span {
+            font-size: var(--h2FontSize);
+            color: var(--primaryColorLight);
+            padding-bottom: 1rem;
+            display: block;
+            font-weight: 600;
+          }
+
+          .singleSal {
+            background: var(--primaryMediumColor);
+            padding: 0.5rem;
+            border-radius: var(--borderRadius);
+            margin-bottom: 0.5rem;
+
+            span {
+              font-size: var(--h3FontSize);
+              font-weight: 600;
+              padding-bottom: 0.7rem;
+            }
+
+            .flex {
+              width: 100%;
+              justify-content: space-between;
+              color: var(--blackColor);
+            }
+          }
+        }
+      }
+    }
+
+    .bottomSection {
+      padding: 2rem 0;
+
+      .title {
+        display: block;
+        font-size: var(--h1FontSize);
+        color: var(--blackColor);
+        padding-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .vehiclesContainer {
+        gap: 1.5rem;
+      }
+    }
+
+    .vehicleContainer {
+      margin-top: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .singleVehicle {
+      width: 100%;
+      position: relative;
+      border: 2px solid transparent;
+      padding-bottom: 1rem;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: 0.4s ease;
+      background: var(--formColor);
+      box-shadow: 0 2px 2px var(--primaryMediumColor);
+
+      &:hover {
+        background: var(--formColor);
+        border: 2px dashed var(--formColor);
+      }
+
+      .imgDiv {
+        height: 150px !important;
+        background: #000;
+        width: 100%;
+        overflow: hidden;
+
+        img {
+          height: 100%;
+          object-fit: cover;
+          transition: 0.3s ease-in-out;
+        }
+
+        &:hover {
+          img {
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      .vehicleInfo {
+        padding: 0 1rem;
+
+        .vehicleTitle {
+          font-size: var(--h2FontSize);
+          color: var(--primaryColor);
+          font-weight: 600;
+        }
+
+        .detailsDiv {
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 0;
+
+          .icons {
+            color: rgb(245, 176, 79);
+
+            .icon {
+              font-size: var(--normalFontSize);
+            }
+          }
+
+          .infor {
+            font-size: var(--normalFontSize);
+            transform: translateY(-2px);
+          }
+        }
+
+        p {
+          padding-bottom: 1rem;
+        }
+
+        .btn {
+          color: var(--primaryColor);
+          font-size: 14px;
+          border: 2px solid var(--primaryColor);
+          transition: 0.3s ease;
+          margin-top: 1rem;
+          width: max-content;
+          background: var(--formColor);
+
+          &:hover {
+            background: var(--primaryColor);
+            color: var(--formColor);
+            border: 2px solid var(--primaryColor);
+          }
+        }
+      }
+
+      .btns {
+        gap: 1rem;
+      }
+    }
+
+    .tableDiv {
+      margin-top: 2rem;
+      width: 100%;
+
+      .icon{
+        color: var(--primaryColor);
+        &:hover{
+          color: var(--primaryMediumColor)
+        }
+      }
+      table {
+        width: 100%;
+
+        .tableHeaders,
+        .tableRows {
+          width: 100%;
+          justify-content: space-between;
+          text-align: center;
+          margin: auto;
+          padding: 1rem;
+          border-radius: var(--borderRadius);
+          color: var(--blackColor);
+
+          .icon {
+            font-size: var(--h1FontSize);
+            &:hover {
+              color: var(--primaryColor);
+            }
+          }
+        }
+
+        .tableHeaders {
+          background: var(--primaryMediumColor);
+        }
+      }
+    }
+
+    // Ajout voiturePage
+    .formDiv {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: flex-start;
+      .fieldDiv {
+        input, select {
+          outline: none;
+          border: none;
+          width: 200px;
+          padding: 0.8rem;
+          background: var(--primaryColorLight);
+          border-radius: var(--borderRadius);
+          color: var(--blackColor);
+          align-items: center;
+          margin: auto;
+          justify-content: center;
+          font-size: var(--normalFontSize);
+          width: 100%;
+          gap: 0.5rem;
+          transition: 0.3s ease;
+
+          &::placeholder {
+            font-size: var(--smallFontSize);
+          }
+        }
+
+        textarea {
+          height: 100px;
+          width: 100%;
+          padding: 0.8rem;
+          background: var(--primaryColorLight);
+          border-radius: var(--borderRadius);
+          color: var(--blackColor);
+          outline: none;
+          border: none;
+        }
+
+        label {
+          color: var(--blackColor);
+          font-weight: 400;
+          font-size: var(--normalFontSize);
+          padding: 0.5rem 0;
+          display: block;
+        }
+      }
+
+      .btn {
+        margin-top: 6.5rem;
+        text-align: center;
+        justify-content: center;
+        transform: translateY(-65px);
+      }
+
+      .addCarBtn,
+      .editCarBtn {
+        text-align: center;
+        justify-content: center;
+        transform: translateY(30px);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: var(--borderRadius);
+        padding: 0.8rem 1rem;
+        color: var(--whiteColor);
+        background: var(--primaryColor);
+        &:hover {
+          background: var(--inputColor);
+          color: var(--primaryColor);
+          transition: 0.3s ease;
+        }
+      }
+    }
+
+    //Voiture Details
+    .CarDetails {
+      .imageDiv {
+        height: 100%;
+        max-height: 200px;
+        background: #000;
+        border-radius: var(--borderRadius);
+        overflow: hidden;
+        position: relative;
+
+        .imgText {
+          position: absolute;
+          background: #0000006f;
+          z-index: 4;
+          height: 100%;
+          width: 100%;
+          color: var(--whiteColor);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          h3 {
+            color: var(--whiteColor);
+            font-size: var(--biggestFontSize);
+          }
+        }
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .detailsInfo {
+        .title {
+          display: block;
+          padding: 1rem 0;
+          color: var(--primaryColor);
+          font-size: var(--h2FontSize);
+          font-weight: 600;
+        }
+
+        p {
+          color: var(--blackColor);
+          font-size: var(--normalFontSize);
+          line-height: var(--h1FontSize);
+        }
+
+        .specs {
+          padding: 1rem 0;
+          gap: 0.5rem;
+
+          span {
+            gap: 0.8rem;
+            color: var(--blackColor);
+
+            .icon {
+              font-size: var(--h1FontSize);
+            }
+
+            small {
+              font-size: var(--h2FontSize);
+            }
+          }
+        }
+
+        .actionButtons {
+          gap: 1rem;
+          margin-top: 1rem;
+          .price {
+            padding: 0.7rem;
+            border-radius: var(--borderRadius);
+            border: 1.5px dashed var(--primaryColor);
+            color: var(--primaryColor);
+            font-size: var(--h2FontSize);
+            font-weight: 600;
+          }
+
+          .btn {
+            font-size: var(--h3FontSize);
+            padding: 0.9rem 1.2rem;
+          }
+        }
+      }
+    }
+
+    // Achat Details Page
+    .detailContainer{
+      .topCard{
+        background: var(--primaryMediumColor);
+        justify-content: space-between;
+        padding: .5rem 1rem;
+        border-radius: var(--borderRadius);
+        margin-bottom: 1.5rem;
+
+        span{
+          color: var(--blackColor);
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
+      }
+
+      .guestDetails{
+        .flex{
+          justify-content: space-between;
+          padding: .3rem;
+          border-bottom: 2px dashed var(--primaryMediumColor);
+          .title{
+            color: var(--blackColor);
+            font-weight: 600;
+            font-size: var(--h3FontSize);
+          }
+        }
+      }
+    }
+  }
+}

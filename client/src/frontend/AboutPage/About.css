@@ -1,0 +1,109 @@
+:root {
+  --bgColor: #f5f5f5;
+  --primaryColor: #000000;
+  --primaryColorLight: #fbf0eb;
+  --formColor: #D3D3D3;
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --greyText: hsl(0, 0%, 51%);
+  --inputColor: hsl(330, 12%, 97%);
+  --cardColor: hsl(300, 3%, 94%);
+  /* Font et Typography */
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: 0.938rem;
+  --smallFontSize: 0.813rem;
+  --smallestFontSize: 0.75rem;
+  --borderRadius: 5px;
+}
+
+.aboutPage {
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+}
+.aboutPage .description {
+  padding-top: 2rem;
+}
+.aboutPage .description .sigleGrid h2 {
+  color: var(--primaryColor);
+  font-size: var(--h2FontSize);
+  padding-bottom: 1rem;
+}
+.aboutPage .description .sigleGrid p {
+  color: var(--blackColor);
+  font-size: var(--normalFontSize);
+  line-height: var(--h1FontSize);
+}
+.aboutPage .reviewSection .formDiv .inputDiv {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+.aboutPage .reviewSection .formDiv .inputDiv label {
+  padding-bottom: 1rem;
+  font-size: var(--normalFontSize);
+  color: var(--blackColor);
+  font-weight: 500;
+}
+.aboutPage .reviewSection .formDiv .inputDiv input,
+.aboutPage .reviewSection .formDiv .inputDiv textarea {
+  outline: none;
+  border: none;
+  width: 200px;
+  padding: 0.8rem;
+  background: var(--cardColor);
+  border-radius: var(--borderRadius);
+  color: var(--blackColor);
+  align-items: center;
+  margin: auto;
+  justify-content: center;
+  font-size: var(--normalFontSize);
+  width: 100%;
+  gap: 0.5rem;
+  transition: 0.3s ease;
+}
+.aboutPage .reviewSection .formDiv .inputDiv input::-moz-placeholder, .aboutPage .reviewSection .formDiv .inputDiv textarea::-moz-placeholder {
+  font-size: var(--smallFontSize);
+}
+.aboutPage .reviewSection .formDiv .inputDiv input::placeholder,
+.aboutPage .reviewSection .formDiv .inputDiv textarea::placeholder {
+  font-size: var(--smallFontSize);
+}
+.aboutPage .reviewSection .formDiv .inputDiv textarea {
+  height: 100px;
+}
+.aboutPage .reviewSection .formDiv .btn {
+  width: 100%;
+}
+
+@media screen and (min-width: 520px) {
+  .aboutPage {
+    padding-top: 7rem;
+  }
+  .aboutPage .description .sigleGrid p {
+    font-size: var(--h3FontSize);
+  }
+  .aboutPage .reviewSection .formDiv {
+    width: 80%;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 1040px) {
+  .aboutPage {
+    padding-top: 7rem;
+  }
+  .aboutPage .description {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .aboutPage .description .sigleGrid p {
+    font-size: var(--h3FontSize);
+  }
+  .aboutPage .reviewSection .formDiv {
+    width: 60%;
+    margin: auto;
+  }
+}/*# sourceMappingURL=About.css.map */
