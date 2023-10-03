@@ -5,6 +5,8 @@ const app = express();
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
+require('dotenv').config();
+
 
 app.use(cors());
 app.use(express.json());
@@ -12,11 +14,11 @@ app.use(express.static("imagesFolder"));
 
 
 const db = mysql.createConnection({
-  host: DB_HOST,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_DATABASE,
-  socketPath: DB_SOCKET_PATH,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  socketPath: process.env.DB_SOCKET_PATH,
 });
 
 // Route pour insérer un nouvel utilisateur/employé dans la base de données
