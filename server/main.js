@@ -10,12 +10,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("imagesFolder"));
 
+
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database:  'ProjetFinal',
-  socketPath: "/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock"
+  host: DB_HOST,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_DATABASE,
+  socketPath: DB_SOCKET_PATH,
 });
 
 // Route pour insérer un nouvel utilisateur/employé dans la base de données
@@ -88,7 +89,7 @@ app.post("/bookCar", (req, res) => {
   });
 });
 
-// Route pour vérifier que l'admin est bien autorisé à accéder au tableau de bord
+// Route pour vérifier que l'utilisateur est bien autorisé à accéder au tableau de bord
 app.post("/loginUser", (req, res) => {
   const userEmailSent = req.body.userEmail;
   const userPasswordSent = req.body.password;
@@ -169,7 +170,7 @@ const verifyToken = (req, res, next) => {
   const token = req.headers["x-access-token"];
 
   if (!token) {
-    res.json("No token boss");
+    res.json("No token");
     res.redirect("/login");
   } else {
     jwt.verify(token, "myToken", (err, decoded) => {
@@ -189,8 +190,6 @@ const verifyToken = (req, res, next) => {
 app.get("/verifyUser", verifyToken, (req, res) => {
   if (req.id === "") {
     res.json({ message: "" });
-    // } else if (req.userRole === "admin" || req.userRole === "employe") {
-    //   res.json({ message: "generaluse" });
   } else if (req.userRole === "guest") {
     res.json({ message: "guest" });
   } else if (req.userRole === "admin") {
@@ -562,7 +561,7 @@ app.delete("/deleteSal/:id", (req, res) => {
   });
 });
 
-// Suppression achat
+// Suppression Employé
 app.delete("/deleteEmploye/:id", (req, res) => {
   const employeId = req.params.id;
   //sql statement pour supprimer un employé
@@ -582,3 +581,5 @@ db.connect(function(err) {
 app.listen(3003, () => {
   console.log("Server is running!");
 });
+
+
