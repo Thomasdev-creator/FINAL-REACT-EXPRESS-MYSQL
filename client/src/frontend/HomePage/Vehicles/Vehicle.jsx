@@ -9,7 +9,7 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 
 const Vehicle = () => {
   // State pour contenir les données
-  const [cars, setCar] = useState([]);
+  const [cars, setCars] = useState([]);
 
   // UseEffect pour obtenir des données via le serveur
   useEffect(() => {
@@ -18,8 +18,8 @@ const Vehicle = () => {
       try{
 
         const results = await Axios.get("http://localhost:3003/allHomeCars");
-        // console.log(results.data)
-        setCar(results.data);
+        console.log(results.data)
+        setCars(results.data);
       }catch(error){
         console.error(error)
       }

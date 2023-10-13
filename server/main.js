@@ -5,6 +5,7 @@ const app = express();
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 
@@ -13,13 +14,7 @@ app.use(express.json());
 app.use(express.static("imagesFolder"));
 
 
-const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  socketPath: process.env.DB_SOCKET_PATH,
-});
+
 
 // Route pour insérer un nouvel utilisateur/employé dans la base de données
 app.post("/addEmploye", (req, res) => {
@@ -92,80 +87,119 @@ app.post("/bookCar", (req, res) => {
 });
 
 // Route pour vérifier que l'utilisateur est bien autorisé à accéder au tableau de bord
+
 app.post("/loginUser", (req, res) => {
   const userEmailSent = req.body.userEmail;
   const userPasswordSent = req.body.password;
 
-  const sql = "SELECT * from guests where email =? && password = ?";
+  // Notez que nous récupérons uniquement le mot de passe pour l'email donné
+  const sql = "SELECT * from guests WHERE email = ?";
 
-  // var sql = "Select A.*, B.* from users A, guests B";
-
-  const Values = [userEmailSent, userPasswordSent];
-
-  db.query(sql, Values, (err, rows) => {
+  db.query(sql, [userEmailSent], (err, rows) => {
     if (err) {
-      console.log("Error access the databasde");
-      res.status(500).json({ message: "Error access the database" });
+      console.log("Error accessing the database");
+      return res.status(500).json({ message: "Error accessing the database" });
     }
-    if (rows.length > 0) {
-      const userID = rows[0].id;
-      const userRole = rows[0].role;
-      const userEmail = rows[0].email;
 
-      const token = jwt.sign({ userID, userRole, userEmail }, "myToken", {
-        expiresIn: "1d",
+    if (rows.length > 0) {
+      const hashedPassword = rows[0].password;
+
+      // Utilisation de bcrypt pour comparer les mots de passe
+      bcrypt.compare(userPasswordSent, hashedPassword, function(err, result) {
+        if (err) {
+          return res.status(500).json({ message: "Erreur lors de la comparaison des mots de passe." });
+        }
+
+        if (result) { // Si les mots de passe correspondent
+          const userID = rows[0].id;
+          const userRole = rows[0].role;
+          const userEmail = rows[0].email;
+
+          const token = jwt.sign({ userID, userRole, userEmail }, "myToken", {
+            expiresIn: "1d",
+          });
+
+          return res.status(200).json({ auth: true, token, results: rows });
+        } else {
+          return res.json({ auth: false, message: "Invalid credentials" });
+        }
       });
-      res.status(200).json({ auth: true, token, results: rows });
     } else {
       res.json({ auth: false, message: "No user found" });
     }
   });
 });
 
+
 // Route pour vérifier que l'utilisateur est bien autorisé à accéder au tableau de bord
+
 app.post("/loginStaff", (req, res) => {
   const userEmailSent = req.body.userEmail;
   const userPasswordSent = req.body.password;
 
-  const sql = "SELECT * from users where email =? && password = ?";
+  // Nous ne vérifions que l'email ici, pas le mot de passe
+  const sql = "SELECT * from users WHERE email = ?";
 
-  const Values = [userEmailSent, userPasswordSent];
-
-  db.query(sql, Values, (err, rows) => {
+  db.query(sql, [userEmailSent], (err, rows) => {
     if (err) {
-      console.log("Error access the databasde");
-      res.status(500).json({ message: "Error access the database" });
+      console.log("Error accessing the database");
+      return res.status(500).json({ message: "Error accessing the database" });
     }
-    if (rows.length > 0) {
-      const userID = rows[0].id;
-      const userRole = rows[0].role;
 
-      const token = jwt.sign({ userID, userRole }, "myToken", {
-        expiresIn: "1d",
+    if (rows.length > 0) {
+      const hashedPassword = rows[0].password;
+
+      // Utilisation de bcrypt pour comparer les mots de passe
+      bcrypt.compare(userPasswordSent, hashedPassword, function(err, result) {
+        if (err) {
+          return res.status(500).json({ message: "Erreur lors de la comparaison des mots de passe." });
+        }
+
+        if (result) { // Si les mots de passe correspondent
+          const userID = rows[0].id;
+          const userRole = rows[0].role;
+
+          const token = jwt.sign({ userID, userRole }, "myToken", {
+            expiresIn: "1d",
+          });
+
+          return res.status(200).json({ auth: true, token, results: rows });
+        } else {
+          return res.json({ auth: false, message: "Invalid credentials" });
+        }
       });
-      res.status(200).json({ auth: true, token, results: rows });
     } else {
       res.json({ auth: false, message: "No user found" });
     }
   });
 });
 
+
 //  Route inscription utilisateur
 app.post("/signUp", (req, res) => {
   const guestEmail = req.body.guestEmail;
-  const guestPassword = req.body.guestPassword;
+  const plaintextPassword = req.body.guestPassword; // c'est le mot de passe en clair
   const guestRole = req.body.setGuestRole;
 
-  const Values = [guestEmail, guestPassword, guestRole];
+  const saltRounds = 10;  // définissez le nombre de tours de sel - 10 est généralement recommandé
+  
+  bcrypt.hash(plaintextPassword, saltRounds, function(err, hashedPassword) {
+    if (err) {
+      return res.json({error: 'Erreur lors du hachage du mot de passe.'});
+    }
 
-  // SQL pour insérer des données
-  const SQL = "INSERT INTO guests (email, password, role) VALUES (?,?,?)";
-  // Execurte SQL
-  db.query(SQL, Values, (err, rows) => {
-    if (err) return res.json(err);
-    return res.json(rows);
+    const Values = [guestEmail, hashedPassword, guestRole];  // Utilisez le hashedPassword ici
+
+    // SQL pour insérer des données
+    const SQL = "INSERT INTO guests (email, password, role) VALUES (?,?,?)";
+    // Exécute SQL
+    db.query(SQL, Values, (err, rows) => {
+      if (err) return res.json(err);
+      return res.json(rows);
+    });
   });
 });
+
 
 // Vérifie le token
 const verifyToken = (req, res, next) => {

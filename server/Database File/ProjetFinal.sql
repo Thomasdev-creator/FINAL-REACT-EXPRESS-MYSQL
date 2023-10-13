@@ -17,8 +17,10 @@ CREATE TABLE `sals` (
   `role` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-
-INSERT INTO `sals` (`id`, `guestname`, `year`, `carname`, `date`, `nationality`, `contact`, `email`, `age`, `message`, `totalcost`, `role`) VALUES
+INSERT INTO sals 
+(id, guestname, year, carname, date, nationality, contact, email, age, message, totalcost, role) 
+VALUES 
+(1, 'John Doe', 2023, 'Toyota Camry', '2023-10-13 12:00:00', 'American', '+123456789', 'johndoe@example.com', 30, 'Test message', 20000, 'Guest');
 
 
 CREATE TABLE `guests` (
@@ -28,14 +30,22 @@ CREATE TABLE `guests` (
   `role` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-
-INSERT INTO `guests` (`id`, `email`, `password`, `role`) VALUES
+INSERT INTO guests 
+(id, email, password, role) 
+VALUES 
+(1, 'johndoe@example.com', 'hashed_password_here', 'RegularGuest');
 
 
 CREATE TABLE `subscribers` (
   `id` int(11) NOT NULL,
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+INSERT INTO subscribers 
+(id, email) 
+VALUES 
+(1, 'subscriber@example.com');
+
 
 
 CREATE TABLE `vehicles` (
@@ -50,20 +60,25 @@ CREATE TABLE `vehicles` (
   `kilometer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO `vehicles` (`id`, `name`, `price`, `image`, `time`, `model`, `description`, `year`, `kilometer`) VALUES
+INSERT INTO vehicles 
+(id, name, price, image, time, model, description, year, kilometer) 
+VALUES 
+(1, 'Toyota Camry', 25000, 'path/to/image.jpg', '12:30 PM', 'Sedan', 'This is a description for Toyota Camry.', 2023, 10000);
 
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `firstName` varchar(100) NOT NULL,
   `secName` varchar(100) NOT NULL,
-  `contact` int(100) NOT NULL,
+  `contact` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO `users` (`id`, `firstName`, `secName`, `contact`, `email`, `password`, `role`) VALUES
+INSERT INTO `users` (firstName, secName, contact, email, password, role) 
+VALUES 
+('Tom', 'test', '+33 123456789', 'tom@admin.com', 'adminadmin', 'admin');
 
 ALTER TABLE `sals`
   ADD PRIMARY KEY (`id`);
