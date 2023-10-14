@@ -4,3 +4,4 @@
 /server/package.json
 .env
 /server/maincopy.js
+/server/hashPassword.js
