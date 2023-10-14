@@ -14,7 +14,7 @@ const SideMenu = () => {
   // Au moment de la déinscription, check utilisateur et redirige vers la bonne route
   const logOut = () => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/verifyUser", {
+      const res = await Axios.get("http://localhost:3003/user/verifyUser", {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

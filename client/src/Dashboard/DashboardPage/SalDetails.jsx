@@ -15,7 +15,7 @@ const SalDetails = () => {
 
   useEffect(() => {
     const fecthDetails = async () => {
-      await Axios.get("http://localhost:3003/singleSal/" + salID).then(
+      await Axios.get("http://localhost:3003/sale/singleSal/" + salID).then(
         (res) => {
           setSalDetails(res.data.sal);
         }
@@ -26,7 +26,7 @@ const SalDetails = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/verifyUser", {
+      const res = await Axios.get("http://localhost:3003/user/verifyUser", {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

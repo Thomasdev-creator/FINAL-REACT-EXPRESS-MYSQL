@@ -17,7 +17,7 @@ const Vehicle = () => {
     const getData = async () => {
       try{
 
-        const results = await Axios.get("http://localhost:3003/allHomeCars");
+        const results = await Axios.get("http://localhost:3003/car/allHomeCars");
         console.log(results.data)
         setCars(results.data);
       }catch(error){

@@ -18,7 +18,7 @@ const StaffLogin = () => {
   const LoginUser = async (e) => {
     e.preventDefault();
 
-    const response = await Axios.post("http://localhost:3003/loginStaff", {
+    const response = await Axios.post("http://localhost:3003/auth/loginStaff", {
       userEmail: userEmail,
       password: userPassword,
     });

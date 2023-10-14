@@ -20,12 +20,12 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchSals = async () => {
       try {
-        const res = await Axios.get("http://localhost:3003/threeSals");
+        const res = await Axios.get("http://localhost:3003/admin/threeSals");
         setSals(res.data.sals);
 
         const carNameID = res.data.sals[0].carID;
         const carID = await Axios.get(
-          "http://localhost:3003/getCarName/" + carNameID
+          "http://localhost:3003/car/getCarName/" + carNameID
         );
         // const carName = carID.data.car[0].name;
       } catch (err) {Video
@@ -38,7 +38,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getAllCars = async () => {
       const result = await Axios.get(
-        "http://localhost:3003/allCarsDashboard"
+        "http://localhost:3003/admin/allCarsDashboard"
       );
       setCars(result.data);
     };
@@ -47,7 +47,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/verifyUser", {
+      const res = await Axios.get("http://localhost:3003/user/verifyUser", {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

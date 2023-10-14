@@ -43,7 +43,7 @@ const AddCar = () => {
     formData.append("totalGuests", carInfo.totalGuests);
     formData.append("desc", carInfo.desc);
 
-    await Axios.post("http://localhost:3003/addCar", formData, {
+    await Axios.post("http://localhost:3003/car/addCar", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -55,7 +55,7 @@ const AddCar = () => {
    // check si l'utilisateur est autorisé à voir cette page
    useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/viewCheck", {
+      const res = await Axios.get("http://localhost:3003/user/viewCheck", {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

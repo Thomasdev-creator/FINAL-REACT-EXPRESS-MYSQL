@@ -20,7 +20,7 @@ const Settings = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/verifyUser", {
+      const res = await Axios.get("http://localhost:3003/user/verifyUser", {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
@@ -43,7 +43,7 @@ const Settings = () => {
   const updateMyDetails = async (e) => {
     e.preventDefault();
     const response = await Axios.put(
-      "http://localhost:3003/updateMyDetails/",
+      "http://localhost:3003/user/updateMyDetails/",
       newDetails,
       {
         headers: {

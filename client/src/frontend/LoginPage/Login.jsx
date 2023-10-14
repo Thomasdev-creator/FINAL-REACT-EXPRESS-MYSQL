@@ -20,7 +20,7 @@ const Login = () => {
   const LoginUser = async (e) => {
     e.preventDefault();
 
-    const response = await Axios.post("http://localhost:3003/loginUser", {
+    const response = await Axios.post("http://localhost:3003/auth/loginUser", {
       userEmail: userEmail,
       password: userPassword,
     });

@@ -30,7 +30,7 @@ const AddEmploye = () => {
   const addEmploye = async (e) => {
     e.preventDefault();
     const currentEmployeRole = employeRole.current.value;
-    await Axios.post("http://localhost:3003/addEmploye/", {currentEmployeRole, ...newEmploye} ).then(() => {
+    await Axios.post("http://localhost:3003/admin/addEmploye/", {currentEmployeRole, ...newEmploye} ).then(() => {
       console.log("Employe created successfully");
       window.location.href = "/employes";
     });

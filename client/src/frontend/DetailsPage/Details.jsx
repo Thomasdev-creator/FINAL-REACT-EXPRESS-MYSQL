@@ -36,7 +36,7 @@ const Details = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       const results = await Axios.get(
-        "http://localhost:3003/getCarDetails/" + carID
+        "http://localhost:3003/car/getCarDetails/" + carID
       );
       setcarDetails(results.data);
     };
@@ -59,7 +59,7 @@ const Details = () => {
     const guestRole = roleRef.current.value;
 
     try {
-      await Axios.post("http://localhost:3003/bookCar", {
+      await Axios.post("http://localhost:3003/sale/bookCar", {
         carNameValue, guestRole,
         ...inputs,
       }).then(() => {

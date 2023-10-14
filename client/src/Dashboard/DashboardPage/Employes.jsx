@@ -19,7 +19,7 @@ const Employes = () => {
   useEffect(() => {
     const getEmployes = async () => {
       try {
-        const res = await Axios.get("http://localhost:3003/getEmployes");
+        const res = await Axios.get("http://localhost:3003/user/getEmployes");
         setEmployes(res.data.rows);
       } catch (err) {
         console.log(err);
@@ -32,7 +32,7 @@ const Employes = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/verifyUser", {
+      const res = await Axios.get("http://localhost:3003/user/verifyUser", {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
@@ -51,7 +51,7 @@ const Employes = () => {
   // function pour supprimer l'employé
   const deleteEmploye = async (id) => {
     try {
-      await Axios.delete("http://localhost:3003/deleteEmploye/" + id);
+      await Axios.delete("http://localhost:3003/user/deleteEmploye/" + id);
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -74,6 +74,7 @@ const Employes = () => {
 
         <div className="tableDiv">
           <table>
+            <thead>
             <tr className="tableHeaders flex">
               <th>ID</th>
               <th>Nom</th>
@@ -81,6 +82,7 @@ const Employes = () => {
               <th>Email</th>
               <th>Action</th>
             </tr>
+            </thead>
 
             <tbody>
               {employes.map((employe) => (
