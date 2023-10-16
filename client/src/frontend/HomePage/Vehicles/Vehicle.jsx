@@ -3,6 +3,8 @@ import "./Vehicle.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 // Import des icônes
 
 import { AiOutlineSwapRight } from "react-icons/ai";
@@ -17,7 +19,7 @@ const Vehicle = () => {
     const getData = async () => {
       try{
 
-        const results = await Axios.get("http://localhost:3003/car/allHomeCars");
+        const results = await Axios.get(`${apiUrl}/car/allHomeCars`);
         console.log(results.data)
         setCars(results.data);
       }catch(error){

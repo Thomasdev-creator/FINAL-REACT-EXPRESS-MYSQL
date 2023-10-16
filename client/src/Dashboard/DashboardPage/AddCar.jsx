@@ -57,7 +57,7 @@ const AddCar = () => {
     const getToken = async () => {
       const res = await Axios.get("http://localhost:3003/user/viewCheck", {
         headers: {
-          "x-access-token": localStorage.getItem("token"),
+          "x-access-token": localStorage.getItem("myToken"),
         },
       });
       if (res.data.message === "no access") {
