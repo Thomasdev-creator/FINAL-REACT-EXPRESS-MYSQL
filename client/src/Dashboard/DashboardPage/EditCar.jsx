@@ -6,6 +6,8 @@ import Axios from "axios";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const EditCar = () => {
   const [carData, setCarData] = useState({
     carName: "",

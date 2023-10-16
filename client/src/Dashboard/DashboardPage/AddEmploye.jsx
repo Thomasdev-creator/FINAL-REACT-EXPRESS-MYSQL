@@ -5,6 +5,8 @@ import "./Dashboard.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import Axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const AddEmploye = () => {
   // State pour stocker les valeurs des inputs
   const [newEmploye, setNewEmploye] = useState({
@@ -30,7 +32,7 @@ const AddEmploye = () => {
   const addEmploye = async (e) => {
     e.preventDefault();
     const currentEmployeRole = employeRole.current.value;
-    await Axios.post("http://localhost:3003/admin/addEmploye/", {currentEmployeRole, ...newEmploye} ).then(() => {
+    await Axios.post(`${apiUrl}/admin/addEmploye`, {currentEmployeRole, ...newEmploye} ).then(() => {
       console.log("Employe created successfully");
       window.location.href = "/employes";
     });

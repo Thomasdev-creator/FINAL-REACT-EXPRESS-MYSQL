@@ -7,6 +7,8 @@ import Axios from "axios";
 import { AiOutlineStar } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const CarDetails = () => {
   const [singleCar, setSingleCar] = useState([]);
 
@@ -17,7 +19,7 @@ const CarDetails = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       const results = await Axios.get(
-        "http://localhost:3003/car/getCarDetails/" + itemID
+        "http://localhost:3003/car/getCarDetails" + itemID
       );
       setSingleCar(results.data);
     };

@@ -15,8 +15,6 @@ app.use(express.static("imagesFolder"));
 // Middleware pour la gestion des données de formulaire
 app.use(express.urlencoded({ extended: true }));
 
-
-
 /*const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,

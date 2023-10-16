@@ -7,6 +7,8 @@ import Axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Login = () => {
   //Crée un state pour contenir les valeurs entrées par l'utilsateur
   const [userEmail, setUserEmail] = useState("");

@@ -6,6 +6,8 @@ import "./Signup.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const SignUp = () => {
   //   Déclare un state pour contenir et éditer la valeur des inputs
   const [details, setDetails] = useState({

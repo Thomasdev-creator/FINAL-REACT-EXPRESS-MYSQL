@@ -7,6 +7,8 @@ import Axios from "axios";
 // Import Logo
 import Logo from "../../assets/voiture-principale.png";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const SideMenu = () => {
 
   const navigate = useNavigate();

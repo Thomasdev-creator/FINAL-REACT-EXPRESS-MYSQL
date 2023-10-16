@@ -8,6 +8,8 @@ import { AiFillDelete } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const VehiclesPage = () => {
   const [cars, setCars] = useState([]);
   const navigate = useNavigate();

@@ -6,6 +6,8 @@ import Axios from "axios";
 import { AiFillDelete } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const SalDetails = () => {
   const [salDetails, setSalDetails] = useState([]);
   const navigate = useNavigate();

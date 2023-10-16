@@ -6,6 +6,8 @@ import Axios from "axios";
 import { TbListDetails } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Sals = () => {
   const [sals, setSals] = useState([]);
   // const [carName, setCarName] = useState([]);
@@ -33,7 +35,7 @@ const Sals = () => {
           if( guestRole === getEmail.data.message){
             const getGuestSals = async()=>{
               try{
-                  const getSals = await Axios.get('http://localhost:3003/sale/getGuestSals/'+ guestID)
+                  const getSals = await Axios.get("http://localhost:3003/sale/getGuestSals/" + guestID)
                   setSals(getSals.data.sals)
               }catch(err){
                 console.log(err)

@@ -8,6 +8,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Employes = () => {
   // State pour enregistrer tout les utilisateurs de la base de données
   const [employes, setEmployes] = useState([]);

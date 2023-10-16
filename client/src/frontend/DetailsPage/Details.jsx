@@ -11,6 +11,8 @@ import { AiOutlineStar } from "react-icons/ai";
 import Vehicle from "../HomePage/Vehicles/Vehicle";
 import { useLocation } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Details = () => {
   // State pour contenir les données
   const [carDetails, setcarDetails] = useState([]);

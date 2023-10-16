@@ -5,6 +5,8 @@ import Axios from "axios";
 //Import des icônes
 import { AiOutlinePlus } from "react-icons/ai";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const AddCar = () => {
   //  Crée un state qui va être mis à jour
   const [carInfo, setCarInfo] = useState({
@@ -43,7 +45,7 @@ const AddCar = () => {
     formData.append("totalGuests", carInfo.totalGuests);
     formData.append("desc", carInfo.desc);
 
-    await Axios.post("http://localhost:3003/car/addCar", formData, {
+    await Axios.post(`${apiUrl}/car/addCar`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -55,7 +57,7 @@ const AddCar = () => {
    // check si l'utilisateur est autorisé à voir cette page
    useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/user/viewCheck", {
+      const res = await Axios.get(`${apiUrl}/user/viewCheck`, {
         headers: {
           "x-access-token": localStorage.getItem("myToken"),
         },
