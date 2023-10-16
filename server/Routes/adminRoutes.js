@@ -10,36 +10,36 @@ const router = express.Router();
 const { db } = require('../main');
 require('dotenv').config();
 
-app.use(cors());
+app.use(cors(/*{
+  origin: 'http://votre-domaine-frontend.com' // Limitez les accès en spécifiant votre domaine
+}*/));
 // Middleware pour la gestion des données JSON
 app.use(express.json());
 app.use(express.static("imagesFolder"));
 // Middleware pour la gestion des données de formulaire
 app.use(express.urlencoded({ extended: true }));
 
-
 // Vérifie le token
 const verifyToken = (req, res, next) => {
-    const token = req.headers["x-access-token"];
-  
-    if (!token) {
-      res.json("No token");
-      res.redirect("/login");
-    } else {
-      jwt.verify(token, "myToken", (err, decoded) => {
-        if (err) {
-          return res.redirect("/login");
-        }
-  
-        req.userID = decoded.userID;
-        req.userRole = decoded.userRole; 
-        req.userEmail = decoded.userEmail; 
-  
-        next();
-      });
-    }
-  };
-  
+  const token = req.headers["x-access-token"];
+
+  if (!token) {
+      return res.status(403).json({ message: "No token" }).redirect("/login");
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET || "myToken", (err, decoded) => {
+      if (err) {
+          return res.status(401).redirect("/login");
+      }
+
+      req.userID = decoded.userID;
+      req.userRole = decoded.userRole; 
+      req.userEmail = decoded.userEmail; 
+
+      next();
+  });
+};
+
 // Route pour fetch les voitures de la base de données(admin/dashboard)
 router.get("/allCarsDashboard", (req, res) => {
     const sql = "SELECT * FROM vehicles ORDER BY RAND() LIMIT 4";
@@ -55,14 +55,18 @@ router.get("/allCarsDashboard", (req, res) => {
   });
 
   // Route pour insérer un nouvel utilisateur/employé dans la base de données
-router.post("/addEmploye", (req, res) => {
+router.post("/addEmploye", async (req, res) => {
     // Variables pour contenir les données envoyées depuis le frontend
     const sentfirstName = req.body.firstName;
     const sentSecName = req.body.secName;
     const sentEmployeEmail = req.body.employeEmail;
     const sentEmployeContact = req.body.employeContact;
     const sentRole = req.body.currentEmployeRole;
-    const sentPassword = req.body.password;
+    const sentHashedPassword = req.body.password;
+
+    try {
+     // Hasher le mot de passe avant de le stocker
+     const hashedPassword = await bcrypt.hash(sentHashedPassword, 10);
   
     // SQL stat pour insérer le détail
     const sql =
@@ -72,7 +76,7 @@ router.post("/addEmploye", (req, res) => {
       sentSecName,
       sentEmployeContact,
       sentEmployeEmail,
-      sentPassword,
+      hashedPassword,
       sentRole
     ];
   
@@ -80,11 +84,16 @@ router.post("/addEmploye", (req, res) => {
     db.query(sql, Values, (err, rows) => {
       if (err) {
         console.log(err);
+        return res.status(500).json({ message: "Erreur lors de l'insertion." });
       } else {
-        console.log("User inserted Success");
-        res.send(rows);
+        res.status(201).json({ message: "Utilisateur inséré avec succès." });
       }
+      
     });
+  } catch(err) {
+    console.error(err);
+    res.status(500).json({ message: "Erreur lors du hashage du mot de passe." });
+    }
   });
 
 // Supprime achat

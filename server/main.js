@@ -15,6 +15,17 @@ app.use(express.static("imagesFolder"));
 // Middleware pour la gestion des données de formulaire
 app.use(express.urlencoded({ extended: true }));
 
+
+
+/*const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  socketPath: process.env.DB_SOCKET_PATH,
+});*/
+
+
 module.exports = {
   db, // Exportez la variable db
 };
@@ -36,10 +47,13 @@ app.use('/sale', saleRoutes);
 app.use('/user', userRoutes);
 
 db.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected to the database!");
+  if (err) {
+      console.error("Erreur lors de la connexion à la base de données :", err);
+      process.exit(1); // Arrête le processus en cas d'erreur de connexion
+  }
+  console.log("Vous êtes bien connecté à la base de données !");
 });
 
 app.listen(3003, () => {
-  console.log("Server is running!");
+  console.log("Serveur en cours d'exécution sur le port 3003!");
 });

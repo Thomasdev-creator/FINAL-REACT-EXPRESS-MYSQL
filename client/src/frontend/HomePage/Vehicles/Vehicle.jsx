@@ -36,7 +36,8 @@ const Vehicle = () => {
         </span>
 
         <div className="vehicleContainer grid">
-          {cars.map((car) => (
+          {Array.isArray(cars) && cars.length > 0 ? (
+            cars.map((car) => (
             <div className="singleVehicle grid" key={car.id}>
               <div className="imgDiv">
                 {car.image && (
@@ -70,7 +71,10 @@ const Vehicle = () => {
 
               <span className="price">{car.price} euros</span>
             </div>
-          ))}
+          ))
+          ) : (
+            <p>Aucune voiture disponible pour le moment</p>
+          )}
         </div>
       </div>
     </div>
