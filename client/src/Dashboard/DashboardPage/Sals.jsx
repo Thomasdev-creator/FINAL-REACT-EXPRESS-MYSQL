@@ -17,10 +17,10 @@ const Sals = () => {
   useEffect(() => {
     const fetchSals = async () => {
       try {
-        const res = await Axios.get("http://localhost:3003/sale/allSals");
+        const res = await Axios.get(`${apiUrl}/sale/allSals/`);
         setSals(res.data.sals);
 
-        const getEmail = await Axios.get("http://localhost:3003/user/verifyUser", {
+        const getEmail = await Axios.get(`${apiUrl}/user/verifyUser/`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
@@ -35,7 +35,7 @@ const Sals = () => {
           if( guestRole === getEmail.data.message){
             const getGuestSals = async()=>{
               try{
-                  const getSals = await Axios.get("http://localhost:3003/sale/getGuestSals/" + guestID)
+                  const getSals = await Axios.get(`${apiUrl}/sale/getGuestSals/` + guestID)
                   setSals(getSals.data.sals)
               }catch(err){
                 console.log(err)
@@ -60,7 +60,7 @@ const Sals = () => {
 
         const carNameID = res.data.sals[0].carID;
         const carID = await Axios.get(
-          "http://localhost:3003/car/getCarName/" + carNameID
+          `${apiUrl}/car/getCarName/` + carNameID
         );
         // const carName = carID.data.car[0].name;
       } catch (err) {

@@ -20,7 +20,7 @@ const StaffLogin = () => {
   const LoginUser = async (e) => {
     e.preventDefault();
 
-    const response = await Axios.post("http://localhost:3003/auth/loginStaff", {
+    const response = await Axios.post(`${apiUrl}/auth/loginStaff/`, {
       userEmail: userEmail,
       password: userPassword,
     });

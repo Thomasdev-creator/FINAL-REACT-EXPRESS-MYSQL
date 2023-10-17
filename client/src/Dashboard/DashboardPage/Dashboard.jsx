@@ -10,6 +10,8 @@ import Video from "../../assets/pexels-video.mp4";
 
 import Axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Dashboard = () => {
   const [cars, setCars] = useState([]);
   const navigate = useNavigate();
@@ -20,12 +22,12 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchSals = async () => {
       try {
-        const res = await Axios.get("http://localhost:3003/admin/threeSals");
+        const res = await Axios.get(`${apiUrl}/admin/threeSals/`);
         setSals(res.data.sals);
 
         const carNameID = res.data.sals[0].carID;
         const carID = await Axios.get(
-          "http://localhost:3003/car/getCarName/" + carNameID
+          `${apiUrl}/car/getCarName/` + carNameID
         );
         // const carName = carID.data.car[0].name;
       } catch (err) {Video
@@ -38,7 +40,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getAllCars = async () => {
       const result = await Axios.get(
-        "http://localhost:3003/admin/allCarsDashboard"
+        `${apiUrl}/admin/allCarsDashboard/`
       );
       setCars(result.data);
     };
@@ -47,7 +49,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/user/verifyUser", {
+      const res = await Axios.get(`${apiUrl}/user/verifyUser/`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

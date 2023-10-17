@@ -19,7 +19,7 @@ const CarDetails = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       const results = await Axios.get(
-        "http://localhost:3003/car/getCarDetails" + itemID
+        `${apiUrl}/car/getCarDetails/` + itemID
       );
       setSingleCar(results.data);
     };

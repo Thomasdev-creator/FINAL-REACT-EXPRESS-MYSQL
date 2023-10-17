@@ -51,7 +51,7 @@ const EditCar = () => {
     formData.append("totalGuests", carData.totalGuests);
 
     await Axios.put(
-      "http://localhost:3003/car/updateCar/"+ carID,
+      `${apiUrl}/car/updateCar/`+ carID,
       formData,
       {
         headers: {

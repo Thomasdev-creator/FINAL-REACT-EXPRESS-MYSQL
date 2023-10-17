@@ -17,7 +17,7 @@ const SalDetails = () => {
 
   useEffect(() => {
     const fecthDetails = async () => {
-      await Axios.get("http://localhost:3003/sale/singleSal/" + salID).then(
+      await Axios.get(`${apiUrl}/sale/singleSal/` + salID).then(
         (res) => {
           setSalDetails(res.data.sal);
         }
@@ -28,7 +28,7 @@ const SalDetails = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/user/verifyUser", {
+      const res = await Axios.get(`${apiUrl}/user/verifyUser`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
@@ -46,7 +46,7 @@ const SalDetails = () => {
 
   // Supprimer achat fonctionnalité
   const deleteSal = () => {
-    Axios.delete("http://localhost:3003/deleteSal/" + salID);
+    Axios.delete(`${apiUrl}/deleteSal/` + salID);
     window.location.href = "/sals";
   };
 

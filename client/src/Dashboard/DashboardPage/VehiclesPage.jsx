@@ -16,7 +16,7 @@ const VehiclesPage = () => {
 
   useEffect(() => {
     const getAllCars = async () => {
-      const result = await Axios.get("http://localhost:3003/car/allCars");
+      const result = await Axios.get(`${apiUrl}/car/allCars/`);
       setCars(result.data);
     };
     getAllCars();
@@ -24,7 +24,7 @@ const VehiclesPage = () => {
 
   const deleteCar = async (id) => {
     try {
-      await Axios.delete("http://localhost:3003/car/deleteCar/" + id, {
+      await Axios.delete(`${apiUrl}/car/deleteCar/` + id, {
         headers: {
           "delete-access-token": localStorage.getItem("token"),
         },
@@ -37,7 +37,7 @@ const VehiclesPage = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/user/verifyUser", {
+      const res = await Axios.get(`${apiUrl}/user/verifyUser`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

@@ -27,7 +27,7 @@ const SignUp = () => {
     e.preventDefault();
     const setGuestRole = guestRole.current.value;
 
-    const response = await Axios.post("http://localhost:3003/auth/signUp", {
+    const response = await Axios.post(`${apiUrl}/auth/signUp/`, {
       setGuestRole,
       ...details,
     });

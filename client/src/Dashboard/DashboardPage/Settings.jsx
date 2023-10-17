@@ -6,6 +6,8 @@ import {useNavigate}  from 'react-router-dom'
 //Import des icônes
 import { AiOutlinePlus } from "react-icons/ai";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Settings = () => {
 
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const Settings = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get("http://localhost:3003/user/verifyUser", {
+      const res = await Axios.get(`${apiUrl}/user/verifyUser/`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
@@ -43,7 +45,7 @@ const Settings = () => {
   const updateMyDetails = async (e) => {
     e.preventDefault();
     const response = await Axios.put(
-      "http://localhost:3003/user/updateMyDetails/",
+      `${apiUrl}/user/updateMyDetails/`,
       newDetails,
       {
         headers: {
