@@ -57,7 +57,7 @@ const AddCar = () => {
    // check si l'utilisateur est autorisé à voir cette page
    useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get(`${apiUrl}/user/viewCheck`, {
+      const res = await Axios.get("http://localhost:3003/user/viewCheck", {
         headers: {
           "x-access-token": localStorage.getItem("myToken"),
         },

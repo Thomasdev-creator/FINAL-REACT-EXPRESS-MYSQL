@@ -46,7 +46,7 @@ router.post("/loginUser", (req, res) => {
             const userRole = rows[0].role;
             const userEmail = rows[0].email;
   
-            const token = jwt.sign({ userID, userRole, userEmail }, "myToken", {
+            const token = jwt.sign({ userID, userRole, userEmail }, process.env.JWT_SECRET, {
               expiresIn: "1d",
             });
   
@@ -90,7 +90,7 @@ router.post("/loginUser", (req, res) => {
             const userID = rows[0].id;
             const userRole = rows[0].role;
   
-            const token = jwt.sign({ userID, userRole }, "myToken", {
+            const token = jwt.sign({ userID, userRole }, process.env.JWT_SECRET, {
               expiresIn: "1d",
             });
   
@@ -140,7 +140,7 @@ router.post("/loginUser", (req, res) => {
       res.json("No token");
       res.redirect("/login");
     } else {
-      jwt.verify(token, "myToken", (err, decoded) => {
+      jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
           return res.redirect("/login");
         }

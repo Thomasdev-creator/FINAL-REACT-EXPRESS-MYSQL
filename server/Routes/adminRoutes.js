@@ -27,7 +27,7 @@ const verifyToken = (req, res, next) => {
       return res.status(403).json({ message: "No token" }).redirect("/login");
   }
 
-  jwt.verify(token, "myToken", (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, proc, (err, decoded) => {
       if (err) {
           return res.status(401).redirect("/login");
       }

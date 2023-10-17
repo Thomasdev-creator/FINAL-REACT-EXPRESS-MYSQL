@@ -6,7 +6,9 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const bcrypt = require('bcrypt');
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
+//require('dotenv').config();
 
 app.use(cors());
 // Middleware pour la gestion des données JSON
@@ -23,13 +25,7 @@ app.use(express.urlencoded({ extended: true }));
   socketPath: process.env.DB_SOCKET_PATH,
 });*/
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "ProjetFinal",
-  socketPath:"/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock",
-});
+
 
 module.exports = {
   db, // Exportez la variable db

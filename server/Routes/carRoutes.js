@@ -148,7 +148,7 @@ router.delete("/deleteCar/:id", (req, res) => {
     if (!deleteToken) {
       res.json("No token");
     } else {
-      jwt.verify(Token, "myToken", (err, decode) => {
+      jwt.verify(Token, process.env.JWT_SECRET, (err, decode) => {
         if (err) {
           res.json("need to verify token");
         }
