@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import Axios from "axios";
+import ROUTES from "../../routes";
 
 // Import des icônes 
 
@@ -19,7 +20,7 @@ const CarDetails = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       const results = await Axios.get(
-        `${apiUrl}/car/getCarDetails/` + itemID
+        `${apiUrl}${ROUTES.GET_CAR_DETAILS}` + itemID
       );
       setSingleCar(results.data);
     };

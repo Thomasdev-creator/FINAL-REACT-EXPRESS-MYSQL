@@ -5,6 +5,7 @@ import "../../index.css";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
+import ROUTES from "../../routes";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -27,7 +28,7 @@ const SignUp = () => {
     e.preventDefault();
     const setGuestRole = guestRole.current.value;
 
-    const response = await Axios.post(`${apiUrl}/auth/signUp/`, {
+    const response = await Axios.post(`${apiUrl}${ROUTES.AUTH_SIGNUP}`, {
       setGuestRole,
       ...details,
     });

@@ -9,6 +9,8 @@ import Video from "../../assets/pexels-video.mp4";
 // Import des icônes
 
 import Axios from "axios";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -22,7 +24,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchSals = async () => {
       try {
-        const res = await Axios.get(`${apiUrl}/admin/threeSals/`);
+        const res = await Axios.get(`${apiUrl}${ROUTES.ADMIN_THREESALS}`);
         setSals(res.data.sals);
 
         const carNameID = res.data.sals[0].carID;
@@ -40,7 +42,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getAllCars = async () => {
       const result = await Axios.get(
-        `${apiUrl}/admin/allCarsDashboard/`
+        `${apiUrl}${ROUTES.ADMIN_ALLCARSDASHBOARD}`
       );
       setCars(result.data);
     };
@@ -49,7 +51,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get(`${apiUrl}/user/verifyUser/`, {
+      const res = await Axios.get(`${apiUrl}${ROUTES.USER_VERIFYUSER}`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

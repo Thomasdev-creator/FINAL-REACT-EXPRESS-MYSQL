@@ -6,6 +6,8 @@ import Footer from "../Components/Footer";
 import Axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -22,7 +24,7 @@ const Login = () => {
   const LoginUser = async (e) => {
     e.preventDefault();
 
-    const response = await Axios.post(`${apiUrl}/auth/loginUser/`, {
+    const response = await Axios.post(`${apiUrl}${ROUTES.AUTH_LOGINUSER}`, {
       userEmail: userEmail,
       password: userPassword,
     });

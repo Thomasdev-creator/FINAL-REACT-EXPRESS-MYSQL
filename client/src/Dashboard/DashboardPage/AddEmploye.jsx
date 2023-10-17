@@ -4,6 +4,8 @@ import "./Dashboard.css";
 //Import des icônes
 import { AiOutlinePlus } from "react-icons/ai";
 import Axios from "axios";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -32,7 +34,7 @@ const AddEmploye = () => {
   const addEmploye = async (e) => {
     e.preventDefault();
     const currentEmployeRole = employeRole.current.value;
-    await Axios.post(`${apiUrl}/admin/addEmploye`, {currentEmployeRole, ...newEmploye} ).then(() => {
+    await Axios.post(`${apiUrl}${ROUTES.ADMIN_ADDEMPLOYE}`, {currentEmployeRole, ...newEmploye} ).then(() => {
       console.log("Employe created successfully");
       window.location.href = "/employes";
     });

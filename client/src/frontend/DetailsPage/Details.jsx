@@ -10,6 +10,8 @@ import Axios from "axios";
 import { AiOutlineStar } from "react-icons/ai";
 import Vehicle from "../HomePage/Vehicles/Vehicle";
 import { useLocation } from "react-router-dom";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -38,7 +40,7 @@ const Details = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       const results = await Axios.get(
-        `${apiUrl}/car/getCarDetails/` + carID
+        `${apiUrl}${ROUTES.GET_CAR_DETAILS}` + carID
       );
       setcarDetails(results.data);
     };
@@ -61,7 +63,7 @@ const Details = () => {
     const guestRole = roleRef.current.value;
 
     try {
-      await Axios.post(`${apiUrl}/sale/bookCar/`, {
+      await Axios.post(`${apiUrl}${ROUTES.SALE_BOOKCAR}`, {
         carNameValue, guestRole,
         ...inputs,
       }).then(() => {

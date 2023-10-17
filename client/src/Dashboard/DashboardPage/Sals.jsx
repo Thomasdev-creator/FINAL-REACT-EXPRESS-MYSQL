@@ -5,6 +5,8 @@ import Axios from "axios";
 // Import des icônes
 import { TbListDetails } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -17,10 +19,10 @@ const Sals = () => {
   useEffect(() => {
     const fetchSals = async () => {
       try {
-        const res = await Axios.get(`${apiUrl}/sale/allSals/`);
+        const res = await Axios.get(`${apiUrl}${ROUTES.SALE_ALLSALS}`);
         setSals(res.data.sals);
 
-        const getEmail = await Axios.get(`${apiUrl}/user/verifyUser/`, {
+        const getEmail = await Axios.get(`${apiUrl}${ROUTES.USER_VERIFYUSER}`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
@@ -35,7 +37,7 @@ const Sals = () => {
           if( guestRole === getEmail.data.message){
             const getGuestSals = async()=>{
               try{
-                  const getSals = await Axios.get(`${apiUrl}/sale/getGuestSals/` + guestID)
+                  const getSals = await Axios.get(`${apiUrl}${ROUTES.SALE_GETGUESTSALS}` + guestID)
                   setSals(getSals.data.sals)
               }catch(err){
                 console.log(err)
@@ -60,7 +62,7 @@ const Sals = () => {
 
         const carNameID = res.data.sals[0].carID;
         const carID = await Axios.get(
-          `${apiUrl}/car/getCarName/` + carNameID
+          `${apiUrl}${ROUTES.CAR_GETCARNAME}` + carNameID
         );
         // const carName = carID.data.car[0].name;
       } catch (err) {

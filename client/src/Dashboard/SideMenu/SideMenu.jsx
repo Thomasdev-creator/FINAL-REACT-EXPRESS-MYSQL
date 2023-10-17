@@ -6,6 +6,8 @@ import Axios from "axios";
 
 // Import Logo
 import Logo from "../../assets/voiture-principale.png";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -16,7 +18,7 @@ const SideMenu = () => {
   // Au moment de la déinscription, check utilisateur et redirige vers la bonne route
   const logOut = () => {
     const getToken = async () => {
-      const res = await Axios.get(`${apiUrl}/user/verifyUser/`, {
+      const res = await Axios.get(`${apiUrl}${ROUTES.USER_VERIFYUSER}`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

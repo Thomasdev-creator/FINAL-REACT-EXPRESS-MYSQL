@@ -25,13 +25,7 @@ app.use(express.urlencoded({ extended: true }));
   socketPath: process.env.DB_SOCKET_PATH,
 });*/
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "ProjetFinal",
-  socketPath:"/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock",
-});
+
 
 module.exports = {
   db, // Exportez la variable db

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import Axios from "axios";
+import ROUTES from "../../routes";
 
 //Import des icônes
 import { AiOutlinePlus } from "react-icons/ai";
@@ -45,7 +46,7 @@ const AddCar = () => {
     formData.append("totalGuests", carInfo.totalGuests);
     formData.append("desc", carInfo.desc);
 
-    await Axios.post(`${apiUrl}/car/addCar`, formData, {
+    await Axios.post(`${apiUrl}${ROUTES.ADD_CAR}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -57,7 +58,7 @@ const AddCar = () => {
    // check si l'utilisateur est autorisé à voir cette page
    useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get(`${apiUrl}/user/viewCheck`, {
+      const res = await Axios.get(`${apiUrl}${ROUTES.USER_VIEWCHECK}`, {
         headers: {
           "x-access-token": localStorage.getItem("myToken"),
         },

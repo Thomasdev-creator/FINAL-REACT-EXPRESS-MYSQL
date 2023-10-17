@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./Vehicle.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
+import ROUTES from "../../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
-
 // Import des icônes
 
 import { AiOutlineSwapRight } from "react-icons/ai";
@@ -19,7 +20,7 @@ const Vehicle = () => {
     const getData = async () => {
       try{
 
-        const results = await Axios.get(`${apiUrl}/car/allHomeCars/`);
+        const results = await Axios.get(`${apiUrl}${ROUTES.CAR_ALLHOMECARS}`);
         console.log(results.data)
         setCars(results.data);
       }catch(error){

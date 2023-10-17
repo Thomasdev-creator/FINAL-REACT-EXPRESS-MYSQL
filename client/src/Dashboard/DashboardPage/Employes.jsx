@@ -7,6 +7,8 @@ import { BiEdit } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -21,7 +23,7 @@ const Employes = () => {
   useEffect(() => {
     const getEmployes = async () => {
       try {
-        const res = await Axios.get(`${apiUrl}/user/getEmployes/`);
+        const res = await Axios.get(`${apiUrl}${ROUTES.USER_GETEMPLOYES}`);
         setEmployes(res.data.rows);
       } catch (err) {
         console.log(err);
@@ -34,7 +36,7 @@ const Employes = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get(`${apiUrl}/user/verifyUser/`, {
+      const res = await Axios.get(`${apiUrl}${ROUTES.USER_VERIFYUSER}`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
@@ -53,7 +55,7 @@ const Employes = () => {
   // function pour supprimer l'employé
   const deleteEmploye = async (id) => {
     try {
-      await Axios.delete(`${apiUrl}/user/deleteEmploye/` + id);
+      await Axios.delete(`${apiUrl}${ROUTES.USER_DELETEEMPLOYE}` + id);
       window.location.reload();
     } catch (err) {
       console.log(err);

@@ -5,6 +5,8 @@ import Axios from "axios";
 // Import des icônes
 import { AiFillDelete } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -17,7 +19,7 @@ const SalDetails = () => {
 
   useEffect(() => {
     const fecthDetails = async () => {
-      await Axios.get(`${apiUrl}/sale/singleSal/` + salID).then(
+      await Axios.get(`${apiUrl}${ROUTES.SALE_SINGLESALE}` + salID).then(
         (res) => {
           setSalDetails(res.data.sal);
         }
@@ -28,7 +30,7 @@ const SalDetails = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get(`${apiUrl}/user/verifyUser`, {
+      const res = await Axios.get(`${apiUrl}${ROUTES.USER_VERIFYUSER}`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
@@ -46,7 +48,7 @@ const SalDetails = () => {
 
   // Supprimer achat fonctionnalité
   const deleteSal = () => {
-    Axios.delete(`${apiUrl}/deleteSal/` + salID);
+    Axios.delete(`${apiUrl}${ROUTES.DELETESALE}` + salID);
     window.location.href = "/sals";
   };
 

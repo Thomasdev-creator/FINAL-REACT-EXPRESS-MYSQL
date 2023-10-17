@@ -7,6 +7,8 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -16,7 +18,7 @@ const VehiclesPage = () => {
 
   useEffect(() => {
     const getAllCars = async () => {
-      const result = await Axios.get(`${apiUrl}/car/allCars/`);
+      const result = await Axios.get(`${apiUrl}${ROUTES.CAR_ALLCARS}`);
       setCars(result.data);
     };
     getAllCars();
@@ -24,7 +26,7 @@ const VehiclesPage = () => {
 
   const deleteCar = async (id) => {
     try {
-      await Axios.delete(`${apiUrl}/car/deleteCar/` + id, {
+      await Axios.delete(`${apiUrl}${ROUTES.CAR_DELETECAR}` + id, {
         headers: {
           "delete-access-token": localStorage.getItem("token"),
         },
@@ -37,7 +39,7 @@ const VehiclesPage = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const res = await Axios.get(`${apiUrl}/user/verifyUser`, {
+      const res = await Axios.get(`${apiUrl}${ROUTES.USER_VERIFYUSER}`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

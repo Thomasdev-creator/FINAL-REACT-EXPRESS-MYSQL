@@ -5,6 +5,8 @@ import Axios from "axios";
 //Import des icônes
 import { AiOutlinePlus } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
+import ROUTES from "../../routes";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -51,7 +53,7 @@ const EditCar = () => {
     formData.append("totalGuests", carData.totalGuests);
 
     await Axios.put(
-      `${apiUrl}/car/updateCar/`+ carID,
+      `${apiUrl}${ROUTES.CAR_UPDATECAR}`+ carID,
       formData,
       {
         headers: {
