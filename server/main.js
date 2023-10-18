@@ -7,6 +7,7 @@ const multer = require("multer");
 const path = require("path");
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
+const nodemailer = require('nodemailer');
 dotenv.config();
 //require('dotenv').config();
 
@@ -36,6 +37,8 @@ const authRoutes = require('./Routes/authRoutes'); // Chemin relatif vers authRo
 const carRoutes = require('./Routes/carRoutes'); // Chemin relatif vers carRoutes.js
 const saleRoutes = require('./Routes/saleRoutes'); // Chemin relatif vers saleRoutes.js
 const userRoutes = require('./Routes/userRoutes'); // Chemin relatif vers userRoutes.js
+const contactRoutes = require('./Routes/contact');
+
 
 // Utilisez les modules de routes en tant que middleware
 
@@ -44,6 +47,8 @@ app.use('/admin', adminRoutes);
 app.use('/car', carRoutes);
 app.use('/sale', saleRoutes);
 app.use('/user', userRoutes);
+app.use('/contact', contactRoutes);
+
 
 db.connect(function(err) {
   if (err) {

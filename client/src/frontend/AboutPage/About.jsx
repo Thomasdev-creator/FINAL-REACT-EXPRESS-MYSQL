@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "./About.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import axios from "axios"; // Importation d'axios
+import ROUTES from "../../routes"; // Importation des routes
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const About = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(`${apiUrl}${ROUTES.CONTACT_SENDEMAIL}`, formData);
+
+      if (response.status === 200) {
+        alert('Email envoyé avec succès!');
+      } else {
+        alert('Échec de l\'envoi de l\'email.');
+      }
+    } catch (error) {
+      alert('Erreur: ' + error.message);
+    }
+  };
   return (
     <>
       <Header />
@@ -97,25 +126,36 @@ const About = () => {
         </div>
 
         <div className="reviewSection section">
-        <span className="secTitle">
-          Laissez-nous un message
-          <p>Nous serions ravis d'entendre votre avis !</p>
-        </span>
+          <span className="secTitle">
+            Laissez-nous un message
+            <p>Nous serions ravis d'entendre votre avis !</p>
+          </span>
 
-        <div className="formDiv">
-           <div className="inputDiv">
-            <label htmlFor="name">Nom et prénom</label>
-            <input type="text" placeholder="Entrez votre nom et prénom" />
-           </div>
-           {/* */}
-           <div className="inputDiv">
-            <label htmlFor="name">Message</label>
-            <textarea name="" id="" placeholder="Écrivez votre message ici"></textarea>
-           </div>
-           <button className="btn">
-            Envoyez message
-           </button>
-        </div>
+          <div className="formDiv">
+            <form onSubmit={handleSubmit}>
+              <div className="inputDiv">
+                <label htmlFor="name">Nom et prénom</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Entrez votre nom et prénom"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="inputDiv">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  name="message"
+                  id=""
+                  placeholder="Écrivez votre message ici"
+                  onChange={handleInputChange}
+                ></textarea>
+              </div>
+              <button className="btn" type="submit">
+                Envoyez message
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <Footer />

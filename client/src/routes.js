@@ -22,6 +22,7 @@ const ROUTES = {
     AUTH_LOGINUSER: '/auth/loginUser/',
     AUTH_LOGINSTAFF: '/auth/loginStaff/',
     AUTH_SIGNUP: '/auth/signUp/',
+    CONTACT_SENDEMAIL: '/contact/send-email/',
     
     // Ajoutez d'autres routes au besoin.
 };
