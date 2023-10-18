@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import "../../index.css";
@@ -10,18 +10,33 @@ import ROUTES from "../../routes";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SignUp = () => {
-  //   Déclare un state pour contenir et éditer la valeur des inputs
+  // Expressions régulières pour la validation
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  const passwordRegex = /^.{6,}$/;
+
+  // State pour les détails d'inscription
   const [details, setDetails] = useState({
     guestEmail: "",
     guestPassword: "",
   });
 
-  //  UseRef pour obtenir le rôle 
+  // States pour suivre la validité de l'e-mail et du mot de passe
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidPassword, setIsValidPassword] = useState(true);
+
+  // UseRef pour obtenir le rôle 
   const guestRole = useRef();
 
+  // Fonction pour obtenir et valider les entrées
   const getInputs = (e) => {
     const { value, name } = e.target;
     setDetails((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "guestEmail") {
+      setIsValidEmail(emailRegex.test(value));
+    } else if (name === "guestPassword") {
+      setIsValidPassword(passwordRegex.test(value));
+    }
   };
 
   const submitValues = async (e) => {
@@ -55,7 +70,15 @@ const SignUp = () => {
                 name="guestEmail"
                 autoComplete="email"
                 onChange={getInputs}
+                style={
+                  isValidEmail ? { borderColor: "green" } : { borderColor: "red" }
+                }
               />
+              {isValidEmail && details.guestEmail !== "" ? 
+                <p style={{ color: "green" }}>Email valide!</p> : 
+                !isValidEmail && details.guestEmail !== "" ? 
+                <p style={{ color: "red" }}>Email invalide!</p> : null}
+              
               <input type="hidden" name="role" ref={guestRole} value="guest" />
             </div>
 
@@ -68,7 +91,14 @@ const SignUp = () => {
                 name="guestPassword"
                 autoComplete="current-password"
                 onChange={getInputs}
+                style={
+                  isValidPassword ? { borderColor: "green" } : { borderColor: "red" }
+                }
               />
+              {isValidPassword && details.guestPassword !== "" ? 
+                <p style={{ color: "green" }}>Mot de passe valide!</p> : 
+                !isValidPassword && details.guestPassword !== "" ? 
+                <p style={{ color: "red" }}>Le mot de passe doit comporter au moins 6 caractères!</p> : null}
             </div>
 
             <button onClick={submitValues} className="btn">
@@ -77,7 +107,7 @@ const SignUp = () => {
           </form>
 
           <span className="signUpBtn">
-            Vous avez déjà un compte <Link to={"/login"}>S'inscrire</Link>{" "}
+            Vous avez déjà un compte <Link to={"/login"}>Se connecter</Link>
           </span>
         </div>
       </div>
