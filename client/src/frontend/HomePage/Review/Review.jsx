@@ -2,9 +2,9 @@ import React, {useEffect} from 'react'
 import './Review.css'
 
 // Import images
-import user1 from '../../../assets/user (1).jpg'
-import user2 from '../../../assets/user (2).png'
-import user3 from '../../../assets/user (3).png'
+import user4 from '../../../assets/user (4).png'
+import user5 from '../../../assets/user (5).png'
+import user6 from '../../../assets/user (6).png'
 
 const Review = () => {
 
@@ -21,7 +21,7 @@ const Review = () => {
 
           <div data-aos='fade-up' data-aos-duration='3000' className="singleReview">
             <div className="imgDiv">
-              <img src={user1}/>
+              <img src={user4}/>
             </div>
 
             <p>
@@ -36,7 +36,7 @@ const Review = () => {
 
           <div data-aos='fade-up' data-aos-duration='3500' className="singleReview">
             <div className="imgDiv">
-              <img src={user2}/>
+              <img src={user5}/>
             </div>
 
             <p>
@@ -51,7 +51,7 @@ const Review = () => {
 
           <div data-aos='fade-up' data-aos-duration='4000' className="singleReview">
             <div className="imgDiv">
-              <img src={user3}/>
+              <img src={user6}/>
             </div>
 
             <p>

@@ -1,11 +1,6 @@
 import React from 'react'
 import './Employe.css'
 
-// Import images
-import vehicleEmploye from  '../../../assets/mecanicien.png'
-import vehiclePackage from '../../../assets/voitureLogo.png'
-import car from  '../../../assets/garage.png'
-
 const Employe = () => {
   return (
     <div className='employe container section'>
@@ -17,7 +12,6 @@ const Employe = () => {
 
         <div className="grid steps">
             <div className="singleStep">
-               <img src={vehiclePackage} alt="Image" />
                <div className="information">
                 <span className="title">
                     Choisissez votre voiture !
@@ -29,10 +23,9 @@ const Employe = () => {
             </div>
 
             <div className="singleStep">
-               <img src={vehicleEmploye} alt="Image" />
                <div className="information">
                 <span className="title">
-                    Contactez notre équipe
+                    Contactez notre équipe !
                 </span>
                 <p>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium, modi.
@@ -41,10 +34,9 @@ const Employe = () => {
             </div>
 
             <div className="singleStep">
-               <img src={car}alt="Image" />
                <div className="information">
                 <span className="title">
-                    Veney au garage
+                    Garage
                 </span>
                 <p>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium, modi.

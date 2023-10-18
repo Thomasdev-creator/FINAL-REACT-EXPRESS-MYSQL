@@ -58,12 +58,13 @@ const Vehicle = () => {
                 <div className="detailsDiv flex">
 
                   <small className="infor">
-                    Kilometer : {car.year}
+                    Kilomètres : {car.year}
                   </small>
                 </div>
                 <div className="detailsDiv flex">
 
-                  <small className="infor">{car.time}</small>
+                  <small className="infor">
+                    Année : {car.time}</small>
                 </div>
 
                 <Link to={`/details/${car.id}`} className="btn flex">
