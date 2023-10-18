@@ -53,6 +53,7 @@ const SignUp = () => {
                 placeholder="Entrez votre email"
                 id="email"
                 name="guestEmail"
+                autoComplete="email"
                 onChange={getInputs}
               />
               <input type="hidden" name="role" ref={guestRole} value="guest" />
@@ -65,6 +66,7 @@ const SignUp = () => {
                 placeholder="Entrez votre mot de passe"
                 id="password"
                 name="guestPassword"
+                autoComplete="current-password"
                 onChange={getInputs}
               />
             </div>

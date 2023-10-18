@@ -41,15 +41,15 @@ const StaffLogin = () => {
       <Header />
       <div className="container formContainer">
         <div className="formCard">
-          <h3>Staff Login Page</h3>
-          <span>Welcome Admin</span>
+          <h3>Connexion administrateur</h3>
+          <span>Bienvenue</span>
 
           <form action="">
             <div className="inputDiv">
-              <label htmlFor="userEmail">User Email</label>
+              <label htmlFor="userEmail">Votre email</label>
               <input
                 type="email"
-                placeholder="Enter user email"
+                placeholder="Entrez votre email"
                 autoComplete="email"
                 onChange={(event) => {
                   setUserEmail(event.target.value);
@@ -58,10 +58,10 @@ const StaffLogin = () => {
             </div>
 
             <div className="inputDiv">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Votre mot de passe</label>
               <input
                 type="password"
-                placeholder="Enter Password"
+                placeholder="Entrez votre mot de passe"
                 autoComplete="current-password"
                 onChange={(event) => {
                   setUserPassword(event.target.value);
@@ -70,7 +70,7 @@ const StaffLogin = () => {
             </div>
 
             <button onClick={LoginUser} className="btn">
-              Login
+              Connexion
             </button>
           </form>
         </div>
