@@ -23,6 +23,9 @@ const SignUp = () => {
   // States pour suivre la validité de l'e-mail et du mot de passe
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
+  
+  // State pour suivre l'acceptation des documents
+  const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false);
 
   // UseRef pour obtenir le rôle 
   const guestRole = useRef();
@@ -41,8 +44,13 @@ const SignUp = () => {
 
   const submitValues = async (e) => {
     e.preventDefault();
-    const setGuestRole = guestRole.current.value;
 
+    if (!hasAcceptedTerms) {
+      alert("Veuillez accepter les termes et conditions pour vous inscrire.");
+      return;
+    }
+
+    const setGuestRole = guestRole.current.value;
     const response = await Axios.post(`${apiUrl}${ROUTES.AUTH_SIGNUP}`, {
       setGuestRole,
       ...details,
@@ -99,6 +107,21 @@ const SignUp = () => {
                 <p style={{ color: "green" }}>Mot de passe valide!</p> : 
                 !isValidPassword && details.guestPassword !== "" ? 
                 <p style={{ color: "red" }}>Le mot de passe doit comporter au moins 6 caractères!</p> : null}
+            </div>
+
+            <div className="inputDiv">
+              <input
+                type="checkbox"
+                id="acceptTerms"
+                name="acceptTerms"
+                onChange={() => setHasAcceptedTerms(!hasAcceptedTerms)}
+              />
+              <label htmlFor="acceptTerms">
+              J'accepte les <a href="/legal/cgu.txt" target="_blank" rel="noopener noreferrer">CGU</a>,
+              <a href="/legal/cgv.txt" target="_blank" rel="noopener noreferrer">CGV</a>,
+              la <a href="/legal/privacy.txt" target="_blank" rel="noopener noreferrer">Politique de confidentialité</a>, 
+              et les <a href="/legal/cookies.txt" target="_blank" rel="noopener noreferrer">Cookies</a>.
+              </label>
             </div>
 
             <button onClick={submitValues} className="btn">

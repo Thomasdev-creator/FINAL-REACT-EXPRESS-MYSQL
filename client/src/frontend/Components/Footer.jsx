@@ -1,25 +1,46 @@
-import React, {useEffect} from 'react'
-import './Components.css'
+import React, { useState, useEffect } from 'react';
+import './Components.css';
 
-//import des icônes
-import {HiPhone} from 'react-icons/hi'
-import {MdEmail} from 'react-icons/md'
-import {FaFacebookF} from 'react-icons/fa'
-import {AiOutlineTwitter} from 'react-icons/ai'
-import {AiFillYoutube} from 'react-icons/ai'
-import {AiFillInstagram} from 'react-icons/ai'
-import {AiOutlineWhatsApp} from 'react-icons/ai'
-
+// Importation des icônes
+import { HiPhone } from 'react-icons/hi';
+import { MdEmail } from 'react-icons/md';
+import { FaFacebookF } from 'react-icons/fa';
+import { AiOutlineTwitter, AiFillYoutube, AiFillInstagram, AiOutlineWhatsApp } from 'react-icons/ai';
 
 const Footer = () => {
+    const [isVisible, setIsVisible] = useState(false);
 
-  return (
-    <div className='footer'>
+    useEffect(() => {
+        // Fonction pour détecter le défilement
+        const checkScroll = () => {
+            if (window.scrollY > 300) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
 
-      <div className="secContainer container">
-        <div className="content grid">
+        // Ajout de l'écouteur d'événement
+        window.addEventListener('scroll', checkScroll);
 
-          <div data-aos='fade-up' data-aos-duration='2000' className="row">
+        return () => {
+            // Suppression de l'écouteur d'événement lors du nettoyage
+            window.removeEventListener('scroll', checkScroll);
+        };
+    }, []);
+
+    const handleScrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    return (
+        <div className='footer'>
+            <div className="secContainer container">
+                <div className="content grid">
+                <div data-aos='fade-up' data-aos-duration='2000' className="row">
             <div className="spanText">
               CONTACTEZ-NOUS
             </div>
@@ -79,24 +100,26 @@ const Footer = () => {
               </ul>
              </div>
           </div>
+                </div>
+                <div className="bottomDiv flex">
+                    <p>Copyright 2023 Aston Martin - Touts droits reservé.</p>
+                    <div className="social flex">
+                        <FaFacebookF className='icon' />
+                        <AiOutlineTwitter className='icon' />
+                        <AiFillYoutube className='icon' />
+                        <AiFillInstagram className='icon' />
+                    </div>
+                    <a className='staffLogin' href="/staffLogin">Administrateur</a>
+                </div>
+            </div>
 
+            {isVisible && (
+                <button className="scrollToTop" onClick={handleScrollToTop}>
+                    Retour en haut
+                </button>
+            )}
         </div>
-        <div  className="bottomDiv flex">
-          <p >Copyright 2023 Aston Martin - Touts droits reservé.</p>
-
-          <div className="social flex">
-            <FaFacebookF className='icon'/>
-            <AiOutlineTwitter className='icon'/>
-            <AiFillYoutube className='icon'/>
-            <AiFillInstagram className='icon'/>
-          </div>
-
-          <a className='staffLogin' href="/staffLogin">Administrateur</a>
-        </div>
-      </div>
-      
-    </div>
-  )
+    );
 }
 
-export default Footer
+export default Footer;

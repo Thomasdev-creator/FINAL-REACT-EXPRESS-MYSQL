@@ -21,7 +21,6 @@ const Vehicle = () => {
       try{
 
         const results = await Axios.get(`${apiUrl}${ROUTES.CAR_ALLHOMECARS}`);
-        console.log(results.data)
         setCars(results.data);
       }catch(error){
         console.error(error)

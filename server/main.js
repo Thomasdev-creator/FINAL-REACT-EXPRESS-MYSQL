@@ -39,7 +39,6 @@ const saleRoutes = require('./Routes/saleRoutes'); // Chemin relatif vers saleRo
 const userRoutes = require('./Routes/userRoutes'); // Chemin relatif vers userRoutes.js
 const contactRoutes = require('./Routes/contact');
 
-
 // Utilisez les modules de routes en tant que middleware
 
 app.use('/auth', authRoutes);
@@ -48,7 +47,6 @@ app.use('/car', carRoutes);
 app.use('/sale', saleRoutes);
 app.use('/user', userRoutes);
 app.use('/contact', contactRoutes);
-
 
 db.connect(function(err) {
   if (err) {
