@@ -139,6 +139,8 @@ cd client
 npm install
 8. Start the frontend application:
 npm run dev
+9. Vous devrez égalmenent ajouter vos détails de connexion à votre base de donnée dans le fichier main.js
+10. Avoir xampp installé et en cours d'éxecution.
 
 ## Contribution
 
