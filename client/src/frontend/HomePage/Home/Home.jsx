@@ -12,7 +12,7 @@ const Home = () => {
         </span>
 
         <div data-aos='fade-up' data-aos-duration='4000' className="homeTitle">
-          <strong>Aston Martin</strong>
+          <strong>Garage V.Parrot</strong>
         </div>
 
         <div data-aos='fade-up' data-aos-duration='6000' className="btn">Contact</div>
